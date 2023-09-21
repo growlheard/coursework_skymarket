@@ -8,9 +8,8 @@ from .apps import SalesConfig
 from .views import AdViewSet, CommentViewSet
 
 router = DefaultRouter()
-router.register(r'ads', AdViewSet, basename='ad')
-router.register(r'ads/(?P<ad_pk>[^/.]+)/comments', CommentViewSet, basename='comment')
-
+router.register(r'ads', AdViewSet, basename='ad-list')
+router.register(r'ads/(?P<ad_pk>[^/.]+)/comments', CommentViewSet, basename='comment-list')
 
 app_name = SalesConfig.name
 urlpatterns = [

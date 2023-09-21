@@ -20,6 +20,7 @@ class AdViewSet(viewsets.ModelViewSet):
     pagination_class = AdsPagination
     permission_classes = [IsReadOnlyOrAuthenticated, IsAdminOrAuthorOrReadOnly]
     filterset_class = AdFilter
+    filterset_fields = ['title']
 
     def perform_create(self, serializer):
         """
@@ -28,6 +29,13 @@ class AdViewSet(viewsets.ModelViewSet):
         При создании нового Ad автором будет текущий пользователь.
         """
         serializer.save(author=self.request.user)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        print("Применяемые фильтры:", filterset.form.data)
+
+        return filterset.qs
 
 
 class CommentViewSet(viewsets.ModelViewSet):

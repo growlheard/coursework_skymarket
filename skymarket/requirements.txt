@@ -37,6 +37,8 @@ PyJWT==2.3.0
 pyparsing==3.0.7
 python-dotenv==0.19.2
 python3-openid==3.2.0
+wheel
+cython
 pytz==2021.3
 requests==2.27.1
 requests-oauthlib==1.3.0
